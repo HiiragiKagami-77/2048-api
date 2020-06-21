@@ -7,10 +7,20 @@ A 2048 game api for training supervised learning (imitation learning) or reinfor
     * [`agents.py`](game2048/agents.py): the `Agent` class with instances.
     * [`displays.py`](game2048/displays.py): the `Display` class with instances, to show the `Game` state.
     * [`expectimax/`](game2048/expectimax): a powerful ExpectiMax agent by [here](https://github.com/nneonneo/2048-ai).
+    * [`my2048.py`](game2048/my2048.py): the model.
+    * [`train.ipynb`](game2048/train.ipynb): generate data and train the model.
 * [`explore.ipynb`](explore.ipynb): introduce how to use the `Agent`, `Display` and `Game`.
 * [`static/`](static/): frontend assets (based on Vue.js) for web app.
 * [`webapp.py`](webapp.py): run the web app (backend) demo.
 * [`evaluate.py`](evaluate.py): evaluate your self-defined agent.
+
+# The structure of the code
+* [`my2048.py`](game2048/my2048.py) has 2 main parts: the definition of a function which implements one-hot coding and the definition of a convolutional neural network.
+* [`train.ipynb`](game2048/train.ipynb) has 2 cells. The first cell defines the batch, the begin, the end of the data to generate and the training epoch. The second cell loads the model, trains the model and saves the model.
+
+# How to run the code
+* To evaluate the model, run [`evaluate.py`](game2048/my2048.py).
+* To train the model, set the parameters in [`train.ipynb`](game2048/train.ipynb) and run.
 
 # Requirements
 * code only tested on linux system (ubuntu 16.04)

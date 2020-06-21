@@ -46,3 +46,32 @@ class ExpectiMaxAgent(Agent):
     def step(self):
         direction = self.search_func(self.game.board)
         return direction
+
+class MyOwnAgent(Agent):
+    def __init__(self, game, display = None):
+        super().__init__(game, display)
+        import torch
+        import torch.nn as nn
+        import torch.nn.functional as f
+        from math import log
+        from game2048.my2048 import Net
+        PATH = './game2048/2048-0.pth'
+        self.model = Net()
+        self.model.load_state_dict(torch.load(PATH))
+        self.model.eval()
+        
+    def step(self):
+        if self.game.score==128:
+            import torch
+            PATH = './game2048/2048-128.pth'
+            self.model.load_state_dict(torch.load(PATH))
+        if self.game.score==256:
+            import torch
+            PATH = './game2048/2048-256.pth'
+            self.model.load_state_dict(torch.load(PATH))
+        if self.game.score==512:
+            import torch
+            PATH = './game2048/2048-512.pth'
+            self.model.load_state_dict(torch.load(PATH))
+        direction = self.model.find_direction(self.game.board)
+        return direction
